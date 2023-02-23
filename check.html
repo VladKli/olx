@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+    <style>
+      /* Define font styles */
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+      }
+
+      h1 {
+        font-size: 36px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .description {
+        font-size: 18px;
+        text-align: justify;
+        margin-bottom: 40px;
+      }
+
+      .price {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: right;
+        margin-bottom: 20px;
+      }
+
+      /* Define container styles */
+      .container {
+        width: 90%;
+        margin: 80px auto;
+      }
+
+      /* Define list styles */
+      ul {
+        list-style-type: none;
+        padding-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+
+      li {
+        font-size: 18px;
+        width: 30%;
+        text-align: center;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>{{title}}</h1>
+      <p class="description">
+        {{description}}
+      </p>
+      <p class="description">{{extra_info}}</p>
+      <p class="price">{{price}}</p>
+      <ul>
+          {% for result in data %}
+            <li>{{ result }}</li>
+          {% endfor %}
+      </ul>
+    </div>
+  </body>
+</html>
