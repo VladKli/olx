@@ -110,8 +110,12 @@ def remove_trash():
     os.remove(test_file1)
 
 
-def main(url):
+def main(url='https://www.olx.ua/d/obyavlenie/gora-vulitsya-sonyachna-avtorskiy-proekt-prodazh-budinok-225m2-IDQNV0n.html'):
     scrape(url)
     create_pdf()
     remove_trash()
+    print('done')
 
+
+if __name__ == '__main__':
+    main()
