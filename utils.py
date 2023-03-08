@@ -16,11 +16,21 @@ proxies = {
    'https': '46.219.8.201:41890',
 }
 
+# def get_browser():
+#     options = webdriver.ChromeOptions()
+#     options.add_argument("headless")
+#     browser = webdriver.Chrome(options=options)
+#     return browser
+
 def get_browser():
-    options = webdriver.ChromeOptions()
-    options.add_argument("headless")
-    browser = webdriver.Chrome(options=options)
-    return browser
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.binary_location = '/usr/bin/chromium'  # Path to Chromium executable
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument('--disable-extensions')
+    chrome_options.add_argument('--headless')  # Run in headless mode to save resources
+    driver = webdriver.Chrome(chrome_options=chrome_options)
+    return driver
 
 
 def get_soup(url):
