@@ -11,6 +11,11 @@ from PyPDF2 import PdfReader, PdfWriter
 import os
 
 
+proxies = {
+   'http': '46.219.8.201:41890',
+   'https': '46.219.8.201:41890',
+}
+
 def get_browser():
     options = webdriver.ChromeOptions()
     options.add_argument("headless")
@@ -43,7 +48,7 @@ def get_pngs(url):
     pngs = get_all_images(url)
     count = 1
     for el in pngs:
-        img = Image.open(BytesIO(requests.get(el).content)).convert("RGB")
+        img = Image.open(BytesIO(requests.get(el, proxies=proxies).content)).convert("RGB")
         img.save(f"pics/file{count}.png")
         count += 1
     return pngs
