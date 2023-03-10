@@ -21,4 +21,5 @@ fi
 
 # add your own build commands...
 
-gunicorn app:app
+pip install --upgrade pip
+pip install -r requirements.txt
