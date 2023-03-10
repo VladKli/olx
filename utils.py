@@ -9,21 +9,14 @@ import pdfkit
 import glob
 from PyPDF2 import PdfReader, PdfWriter
 import os
+from os.path import dirname
 
+DIR = dirname(os.path.realpath(__file__))
 
 headers = {
     'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
 }
-# proxies = {
-#    'http': '46.219.8.201:41890',
-#    'https': '46.219.8.201:41890',
-# }
 
-# def get_browser():
-#     options = webdriver.ChromeOptions()
-#     options.add_argument("headless")
-#     browser = webdriver.Chrome(options=options)
-#     return browser
 
 def get_browser():
     chrome_options = webdriver.ChromeOptions()
@@ -94,24 +87,24 @@ def scrape(url):
     template_env = jinja2.Environment(loader=template_loader)
     template = template_env.get_template("check.html")
     output_text = template.render(context)
-    config = pdfkit.configuration(wkhtmltopdf="/usr/bin/wkhtmltopdf")
+    config = pdfkit.configuration(wkhtmltopdf="/usr/local/bin/wkhtmltopdf")
     pdfkit.from_string(output_text, "test_it.pdf", configuration=config)
 
 
 def create_pdf():
     images = []
-    for png in glob.glob("/home/andersen/Documents/projects/shar/pics/*.png"):
+    for png in glob.glob(f"{DIR}/pics/*.png"):
         im = Image.open(png)
         images.append(im)
-    pdf_path = "/home/andersen/Documents/projects/shar/pdfs/test.pdf"
+    pdf_path = f"{DIR}/pdfs/test.pdf"
     images[0].save(
         pdf_path, "PDF", resolution=100.0, save_all=True, append_images=images[1:]
     )
     output = PdfWriter()
     pdfOne = PdfReader(
-        open("/home/andersen/Documents/projects/shar/pdfs/test.pdf", "rb")
+        open(f"{DIR}/pdfs/test.pdf", "rb")
     )
-    pdfTwo = PdfReader(open("/home/andersen/Documents/projects/shar/test_it.pdf", "rb"))
+    pdfTwo = PdfReader(open(f"{DIR}/test_it.pdf", "rb"))
     output.add_page(pdfTwo.pages[0])
     count = 0
     for page in pdfOne.pages:
@@ -124,12 +117,12 @@ def create_pdf():
 
 
 def remove_trash():
-    pics_files = glob.glob("/home/andersen/Documents/projects/shar/pics/*")
+    pics_files = glob.glob(f"{DIR}/pics/*")
     for f in pics_files:
         os.remove(f)
-    test_file = "/home/andersen/Documents/projects/shar/test_it.pdf"
-    test_file1 = "/home/andersen/Documents/projects/shar/pdfs/test.pdf"
-    test_file2 = "/home/andersen/Documents/projects/shar/announcement.pdf"
+    test_file = f"{DIR}/test_it.pdf"
+    test_file1 = f"{DIR}/pdfs/test.pdf"
+    test_file2 = f"{DIR}/announcement.pdf"
     os.remove(test_file)
     os.remove(test_file1)
     os.remove(test_file2)

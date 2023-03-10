@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request, send_file, redirect
 from utils import main, remove_trash
+import os
+from os.path import dirname
+
+DIR = dirname(os.path.realpath(__file__))
 
 app = Flask(__name__)
 
@@ -16,7 +20,7 @@ def index():
 def download():
     main(request.form["input"])
     file = send_file(
-        "/home/andersen/Documents/projects/shar/announcement.pdf", as_attachment=True
+        f"{DIR}/announcement.pdf", as_attachment=True
     )
     remove_trash()
     # request.form["input"] = ""
