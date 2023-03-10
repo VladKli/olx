@@ -30,6 +30,7 @@ def get_browser():
     chrome_options.binary_location = '/opt/render/project/.render/chrome/opt/google/chrome'  # Path to Chromium executable
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-gpu')
+    chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument('--disable-extensions')
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument('--headless')  # Run in headless mode to save resources
