@@ -33,7 +33,10 @@ def get_browser():
     chrome_options.add_argument("--remote-debugging-port=9222")
     chrome_options.add_argument('--disable-extensions')
     chrome_options.add_argument("--disable-dev-shm-usage")
-    chrome_options.add_argument('--headless')  # Run in headless mode to save resources
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('start-maximized')
+    chrome_options.add_argument('disable-infobars')
+    chrome_options.add_argument('--disable-extensions')
     driver = webdriver.Chrome(chrome_options=chrome_options)
     return driver
 
