@@ -36,4 +36,4 @@ ENV FLASK_APP=app.py
 EXPOSE 80
 
 # Run the command to start the Flask app
-CMD gunicorn app:app
+CMD gunicorn --timeout 600 app:app
