@@ -36,4 +36,4 @@ ENV FLASK_APP=app.py
 EXPOSE 80
 
 # Run the command to start the Flask app
-CMD ["python", "./app.py"]
+CMD gunicorn app:app
