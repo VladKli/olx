@@ -19,12 +19,11 @@ headers = {
 
 
 def get_browser():
-    binary_path = '/usr/local/bin/chromedriver'
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
     chrome_options.add_argument('--disable-dev-shm-usage')
     chrome_options.add_argument('--headless')
-    driver = webdriver.Chrome(binary_path, chrome_options=chrome_options)
+    driver = webdriver.Chrome(chrome_options=chrome_options, executable_path='/usr/local/bin/chromedriver')
 
     return driver
 
